@@ -1,3 +1,5 @@
+import os
+
 class Node(object):
     def __init__(self, data=None, next=None):
         self.data = data
@@ -19,7 +21,7 @@ class Node(object):
     def hasNext(self):
         return self.next != None
 
-class singlyLinkList(object):
+class SinglyLinkList(object):
 
     def __init__(self):
         self.head = None
@@ -67,10 +69,43 @@ class singlyLinkList(object):
         print("List End.")
 
 
+    def search_list(self, data):
+        current = self.head
+        found = False
+        
+        while current != None:
+            if current.getData() == data:
+                found = True
+                break
+
+            current = current.getNext()
+
+        if found is not True:
+            return None
+        
+        return current
+
+    def delete(self, data):
+        current = self.head
+        previous = None
+        found = False
+        while current and found is False:
+            if current.getData() == data:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
+        if current is None:
+            raise ValueError("Data not in list")
+        if previous is None:
+            self.head = current.getNext()
+        else:
+            previous.setNext(current.getNext())
+
 
 if __name__ == '__main__':
-    l_list = singlyLinkList()
-    
+    l_list = SinglyLinkList()
+
     l_list.insertAtBeginning(100)
     for i in range(101, 110):
     	l_list.insertAtEnd(i)
@@ -78,3 +113,4 @@ if __name__ == '__main__':
     l_list.print_list()
 
     print(l_list.listLength())
+    print(os.getcwd())

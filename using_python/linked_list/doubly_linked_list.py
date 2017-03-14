@@ -36,7 +36,23 @@ class DoublyList(object):
                     current_node.next.prev = None
  
             current_node = current_node.next
- 
+    
+    def search( self, search_data ) :
+        current = self.head
+        if current != None :
+            while current != None :
+                print(">>>>  ", current.data, " >>> ",search_data)
+                if (current.data == search_data):
+                    return current
+
+                if current.next == None:
+                    break
+                current = current.next
+                
+            if (current.data == search_data):
+                return current
+        return None
+
     def show(self):
         print("Showing list data:")
         current_node = self.head
@@ -61,3 +77,4 @@ d.remove(50)
 d.remove(5)
  
 d.show()
+print(d.search(30))
